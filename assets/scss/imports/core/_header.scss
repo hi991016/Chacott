@@ -12,9 +12,14 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 15px;
-    width: 150px;
+    top: 24px;
+    width: 461.1px;
     opacity: 0;
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
   }
 
   &_logo {

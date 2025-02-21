@@ -22,14 +22,14 @@ const init = () => {
     end: "top top",
     onEnter: () => {
       move.reverse();
-      gsap.to("[data-header-logo]", {
+      gsap.to("[data-header-logo], [data-scrolldown]", {
         opacity: 0,
         duration: 0.5,
       });
     },
     onEnterBack: () => {
       move.play();
-      gsap.to("[data-header-logo]", {
+      gsap.to("[data-header-logo], [data-scrolldown]", {
         opacity: 1,
         duration: 0.5,
         delay: 0.5,

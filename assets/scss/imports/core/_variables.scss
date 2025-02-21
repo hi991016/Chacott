@@ -2,15 +2,15 @@
 ------------------------------------------------------------*/
 $base-width: 1920px;
 
-$main-fonts: "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro",
-  "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
+$main-fonts: "ryo-text-plusn", "ivypresto-display", serif;
+$en-fonts: "ivypresto-display", serif;
 
 //color common
-$main-bg-cl: #fff;
-$main-text-cl: #000;
+$main-bg-cl: #f4eee6;
+$main-text-cl: #4d4d4d;
 $black-cl: #000;
 $white-cl: #fff;
-$gray-cl: #d3d3d3;
+$brown-cl: #e5ded2;
 
 :root {
   --app-height: 100vh;
