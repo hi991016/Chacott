@@ -69,3 +69,7 @@ main {
   background: #ededed;
   color: #000;
 }
+
+::-webkit-scrollbar {
+  width: 0;
+}

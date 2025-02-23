@@ -8,25 +8,20 @@
   width: 100%;
   z-index: 1000;
 
-  .jslogo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 24px;
-    width: 461.1px;
-    opacity: 0;
-
-    svg {
-      width: 100%;
-      height: auto;
-    }
-  }
-
   &_logo {
     position: absolute;
     top: 15px;
     left: 50%;
     transform: translateX(-50%);
     opacity: 0;
+
+    @include maxW(1023px) {
+      top: 20px;
+
+      svg {
+        width: 134.13px;
+        height: auto;
+      }
+    }
   }
 }
