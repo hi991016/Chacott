@@ -1,5 +1,17 @@
 /* Utils
 ------------------------------------------------------------*/
+
+/* data fadein */
+
+[data-fadein] {
+  opacity: 0;
+  transition: 1s;
+
+  &.--visible {
+    opacity: 1;
+  }
+}
+
 /* only device */
 
 .sp-only,

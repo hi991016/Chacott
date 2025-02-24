@@ -8,9 +8,6 @@ const init = () => {
   ScrollTrigger.refresh();
   if (window.innerWidth < 1024) {
     ScrollTrigger.config({
-      // a comma-delimited list of events that trigger a refresh.
-      // default: "visibilitychange,DOMContentLoaded,load,resize"
-      // so remove the "resize" one:
       autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
     });
   }
@@ -67,6 +64,7 @@ const initLoader = () => {
     .to("[data-header-logo], [data-scrolldown]", {
       opacity: 1,
       duration: 1,
+      delay: 3.5,
       ease: Power4.easeInOut,
     })
     .to("[data-loading]", {
@@ -128,6 +126,26 @@ const scrollLogoShrink = () => {
     }
   );
 };
+
+// ===== scroll fade up content =====
+const [fadeInArray] = [document.querySelectorAll("[data-fadein]")];
+
+const addFadeOnElements = function (elements) {
+  if (elements) {
+    for (let i = 0; i < elements.length; i++) {
+      let elem = elements[i];
+      let distInView =
+        elem.getBoundingClientRect().top - window.innerHeight + 100;
+      if (distInView < 0) {
+        elem.classList.add("--visible");
+      }
+    }
+  }
+};
+
+window.addEventListener("scroll", function () {
+  addFadeOnElements(fadeInArray);
+});
 
 // DOMContentLoaded
 window.addEventListener("DOMContentLoaded", init);
