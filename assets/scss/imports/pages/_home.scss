@@ -14,8 +14,13 @@
     &_container {
       position: relative;
       overflow: hidden;
-      background-color: #ecb0ba;
       padding-top: 250px;
+      background: linear-gradient(
+        to bottom,
+        #f4eee6 0%,
+        #ecb0ba 80%,
+        #ecb0ba 100%
+      );
 
       @include maxW(1023px) {
         padding-top: 200px;
