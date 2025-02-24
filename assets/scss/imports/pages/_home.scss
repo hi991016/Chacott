@@ -124,4 +124,148 @@
       }
     }
   }
+
+  // ===== anni ====
+  .anni {
+    &_container {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &_logo {
+      padding-top: 25px;
+      padding-left: 30px;
+
+      @include maxW(1023px) {
+        padding-top: 15px;
+        padding-left: 20px;
+      }
+    }
+
+    &_content {
+      flex: 1;
+      padding: 0 30px;
+      margin-top: 217px;
+
+      h2 {
+        font-family: $en-fonts;
+        font-size: 2.8rem;
+        font-weight: 300;
+        letter-spacing: 1.12px;
+        line-height: 1.5;
+      }
+
+      @include maxW(1023px) {
+        padding: 0 20px;
+        margin-top: 167px;
+
+        h2 {
+          font-size: 2rem;
+          letter-spacing: 0.8px;
+        }
+      }
+    }
+
+    &_inner {
+      margin-top: 240px;
+      padding: 57px 30px 28px;
+      background-color: $brown-cl;
+
+      @include maxW(1023px) {
+        margin-top: 200px;
+        padding: 58px 20px 15px;
+      }
+    }
+
+    &_shop {
+      h3 {
+        font-family: $en-fonts;
+        font-size: 2.2rem;
+        font-weight: 300;
+        letter-spacing: 0.968px;
+      }
+
+      @include maxW(1023px) {
+        h3 {
+          font-size: 1.8rem;
+          letter-spacing: 0.72px;
+        }
+      }
+    }
+
+    &_list {
+      margin-top: 25px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      width: 100%;
+
+      picture {
+        display: block;
+        z-index: 1;
+        position: relative;
+        height: 100%;
+        padding-bottom: calc(160 / 330 * 100%);
+        background-color: $main-bg-cl;
+
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      @include maxW(1023px) {
+        margin-top: 20px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+
+        picture {
+          aspect-ratio: 1/1;
+          padding-bottom: 100%;
+        }
+      }
+    }
+
+    &_footer {
+      margin-top: 77px;
+      display: flex;
+      justify-content: space-between;
+      font-family: $en-fonts;
+      font-weight: 300;
+
+      a {
+        font-size: 2rem;
+        letter-spacing: 0.8px;
+      }
+
+      .copyright {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 1.7rem;
+        letter-spacing: 0.68px;
+      }
+
+      @include maxW(1023px) {
+        margin-top: 58px;
+
+        a {
+          font-size: 1.6rem;
+          letter-spacing: 0.64px;
+        }
+
+        .copyright {
+          font-size: 1.3rem;
+          letter-spacing: 0.52px;
+        }
+      }
+    }
+  }
 }

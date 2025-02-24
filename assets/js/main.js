@@ -17,6 +17,10 @@ const init = () => {
   initLoader();
   // logo shrink
   scrollLogoShrink();
+  // lazy load
+  const ll = new LazyLoad({
+    threshold: 0,
+  });
 };
 
 // ===== lenis =====
