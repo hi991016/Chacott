@@ -157,5 +157,34 @@ ScrollTrigger.create({
   markers: false,
 });
 
+// ===== scroll fixed section footer =====
+let panels = gsap.utils.toArray("section");
+panels.pop(); // get rid of the last one (don't need it in the loop)
+panels.forEach((panel, i) => {
+  let tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: panel,
+      start: "bottom bottom",
+      pinSpacing: false,
+      pin: true,
+      scrub: true,
+      markers: false,
+      invalidateOnRefresh: true,
+      onRefresh: () => {
+        gsap.set(panel, {
+          transformOrigin:
+            "center " +
+            (window.innerHeight + panel.offsetHeight - window.innerHeight / 2) +
+            "px",
+        });
+      },
+    },
+  });
+});
+
+window.onresize = function () {
+  ScrollTrigger.refresh();
+};
+
 // DOMContentLoaded
 window.addEventListener("DOMContentLoaded", init);
