@@ -1,10 +1,10 @@
 "use strict";
 
 const init = () => {
-  // console.clear();
+  console.clear();
   // gsap config
-  ScrollTrigger.clearScrollMemory("manual");
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.clearScrollMemory("manual");
   ScrollTrigger.refresh();
   if (window.innerWidth < 1024) {
     ScrollTrigger.config({
