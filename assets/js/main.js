@@ -51,24 +51,17 @@ const initLoader = () => {
       top: 0,
       duration: 1.8,
       ease: Power4.easeOut,
-    })
-    .to(
-      "[data-logo-shrink]",
-      {
-        opacity: 1,
-        duration: 1,
-        ease: Power4.easeInOut,
+      onComplete: () => {
+        gsap.to("[data-loading]", {
+          zIndex: "-100",
+        });
       },
-      "-=0.5"
-    )
+    })
     .to("[data-header-logo], [data-scrolldown]", {
       opacity: 1,
       duration: 1,
-      delay: 3.5,
+      delay: 4.5,
       ease: Power4.easeInOut,
-    })
-    .to("[data-loading]", {
-      zIndex: "-100",
     });
 };
 
@@ -129,7 +122,6 @@ const scrollLogoShrink = () => {
 
 // ===== scroll fade up content =====
 const [fadeInArray] = [document.querySelectorAll("[data-fadein]")];
-
 const addFadeOnElements = function (elements) {
   if (elements) {
     for (let i = 0; i < elements.length; i++) {
@@ -145,6 +137,20 @@ const addFadeOnElements = function (elements) {
 
 window.addEventListener("scroll", function () {
   addFadeOnElements(fadeInArray);
+});
+
+// ===== scroll hidden header logo =====
+ScrollTrigger.create({
+  animation: gsap.to("[data-logo-shrink]", {
+    opacity: 0,
+    duration: 0.8,
+    ease: Power4.easeInOut,
+  }),
+  trigger: "[data-top-chacott]",
+  start: "top+=10% center",
+  end: "top+=10% center",
+  toggleActions: "play none reverse none",
+  markers: false,
 });
 
 // DOMContentLoaded
