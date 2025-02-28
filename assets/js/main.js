@@ -41,6 +41,16 @@ const initLoader = () => {
   const preloader = gsap.timeline({
     onComplete: () => {
       lenis.start();
+      //  scroll hidden header logo
+      ScrollTrigger.create({
+        animation:
+          gsap.fromTo("[data-logo-shrink]", { opacity: 1 }, { opacity: 0, duration: 1, ease: Power4.easeInOut, }),
+        trigger: "[data-top-chacott]",
+        start: "top+=10% center",
+        end: "top+=10% center",
+        toggleActions: "play none reverse none",
+        markers: false,
+      });
     },
   });
 
@@ -54,17 +64,22 @@ const initLoader = () => {
     .to("[data-loading-overlay]", {
       top: 0,
       duration: 1.8,
+      delay: 0.5,
       ease: Power4.easeOut,
+    })
+    .to("[data-logo-shrink]", {
+      opacity: 1,
+      duration: 0.5,
       onComplete: () => {
         gsap.to("[data-loading]", {
           zIndex: "-100",
         });
       },
-    })
+    }, "-=0.7")
     .to("[data-header-logo], [data-scrolldown]", {
       opacity: 1,
       duration: 1,
-      delay: 4.5,
+      delay: 3.5,
       ease: Power4.easeInOut,
     });
 };
@@ -111,6 +126,9 @@ const scrollLogoShrink = () => {
             opacity: 0,
             duration: 0.5,
           });
+          gsap.to("[data-logo-shrink] svg", {
+            y: 0,
+          })
         },
         onEnterBack: () => {
           gsap.to("[data-header-logo], [data-scrolldown]", {
@@ -118,6 +136,9 @@ const scrollLogoShrink = () => {
             duration: 0.5,
             delay: 0.5,
           });
+          gsap.to("[data-logo-shrink] svg", {
+            y: isMobile ? -30 : 0,
+          })
         },
       });
     }
@@ -138,23 +159,8 @@ const addFadeOnElements = function (elements) {
     }
   }
 };
-
 window.addEventListener("scroll", function () {
   addFadeOnElements(fadeInArray);
-});
-
-// ===== scroll hidden header logo =====
-ScrollTrigger.create({
-  animation: gsap.to("[data-logo-shrink]", {
-    opacity: 0,
-    duration: 0.8,
-    ease: Power4.easeInOut,
-  }),
-  trigger: "[data-top-chacott]",
-  start: "top+=10% center",
-  end: "top+=10% center",
-  toggleActions: "play none reverse none",
-  markers: false,
 });
 
 // ===== scroll fixed section footer =====
@@ -182,9 +188,32 @@ panels.forEach((panel, i) => {
   });
 });
 
-window.onresize = function () {
-  ScrollTrigger.refresh();
-};
+//
+ScrollTrigger.create({
+  trigger: "[data-anni]",
+  start: "top bottom",
+  end: "top bottom",
+  markers: false,
+  invalidateOnRefresh: true,
+  onEnter: () => {
+    gsap.to(".top_chacott_inner", {
+      opacity: 0,
+      duration: 1,
+    })
+  },
+  onEnterBack: () => {
+    gsap.to(".top_chacott_inner", {
+      opacity: 1,
+      duration: 1,
+    })
+  }
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 1023) {
+    ScrollTrigger.refresh();
+  }
+})
 
 // DOMContentLoaded
 window.addEventListener("DOMContentLoaded", init);
