@@ -16,7 +16,7 @@ const init = () => {
   // init loader
   initLoader();
   // logo shrink
-  scrollLogoShrink();
+  scrollEvents();
   // lazy load
   const ll = new LazyLoad({
     threshold: 0,
@@ -64,7 +64,7 @@ const initLoader = () => {
     .to("[data-loading-overlay]", {
       top: 0,
       duration: 1.8,
-      delay: 0.5,
+      delay: 1,
       ease: Power4.easeOut,
     })
     .to("[data-logo-shrink]", {
@@ -79,7 +79,7 @@ const initLoader = () => {
     .to("[data-header-logo], [data-scrolldown]", {
       opacity: 1,
       duration: 1,
-      delay: 3.5,
+      delay: 3.8,
       ease: Power4.easeInOut,
     });
 };
@@ -94,12 +94,12 @@ const appHeight = () => {
 };
 window.addEventListener("resize", appHeight);
 
-// ===== logo shirnk =====
-const scrollLogoShrink = () => {
-  // ==== create
+// ===== scroll events page =====
+const scrollEvents = () => {
   let mmg = gsap.matchMedia(),
     breakPoint = 1024;
 
+  // ==== create
   mmg.add(
     {
       isDesktop: `(min-width: ${breakPoint}px)`,
@@ -108,14 +108,23 @@ const scrollLogoShrink = () => {
     (context) => {
       let { isMobile } = context.conditions;
 
+      // scroll logo shrink
       ScrollTrigger.create({
         animation: gsap.from("[data-logo-shrink]", {
           height: "100%",
           width: "100%",
           duration: 1,
-          ease: "power1.inOut",
         }),
         start: 100,
+        scrub: true,
+        trigger: ".top",
+        start: "top bottom",
+        endTrigger: ".top",
+        end: "top center",
+        markers: false,
+      });
+      // scroll hide header logo and scrolldown
+      ScrollTrigger.create({
         trigger: "[data-offset-top]",
         start: "top+=50 top",
         end: "top top",
@@ -124,7 +133,7 @@ const scrollLogoShrink = () => {
         onEnter: () => {
           gsap.to("[data-header-logo], [data-scrolldown]", {
             opacity: 0,
-            duration: 0.5,
+            duration: 0.2,
           });
           gsap.to("[data-logo-shrink] svg", {
             y: 0,
@@ -133,13 +142,32 @@ const scrollLogoShrink = () => {
         onEnterBack: () => {
           gsap.to("[data-header-logo], [data-scrolldown]", {
             opacity: 1,
-            duration: 0.5,
-            delay: 0.5,
+            duration: 0.2,
           });
           gsap.to("[data-logo-shrink] svg", {
             y: isMobile ? -30 : 0,
           })
         },
+      })
+      // scroll hide chacott logo
+      ScrollTrigger.create({
+        trigger: "[data-anni]",
+        start: "top bottom",
+        end: "top bottom",
+        markers: false,
+        invalidateOnRefresh: true,
+        onEnter: () => {
+          gsap.to(".top_chacott_inner", {
+            opacity: 0,
+            duration: 0.2,
+          })
+        },
+        onEnterBack: () => {
+          gsap.to(".top_chacott_inner", {
+            opacity: 1,
+            duration: 0.2,
+          })
+        }
       });
     }
   );
@@ -188,27 +216,7 @@ panels.forEach((panel, i) => {
   });
 });
 
-//
-ScrollTrigger.create({
-  trigger: "[data-anni]",
-  start: "top bottom",
-  end: "top bottom",
-  markers: false,
-  invalidateOnRefresh: true,
-  onEnter: () => {
-    gsap.to(".top_chacott_inner", {
-      opacity: 0,
-      duration: 1,
-    })
-  },
-  onEnterBack: () => {
-    gsap.to(".top_chacott_inner", {
-      opacity: 1,
-      duration: 1,
-    })
-  }
-});
-
+// reszie refresh scroll trigger
 window.addEventListener("resize", () => {
   if (window.innerWidth > 1023) {
     ScrollTrigger.refresh();
