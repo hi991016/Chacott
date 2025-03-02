@@ -35,9 +35,10 @@
       width: 110%;
       pointer-events: none;
       z-index: 1;
+      opacity: 0.2;
 
       .topl2 {
-        transform: translate(-40px, -160px);
+        transform: translate(-40px, -120px);
       }
 
       @include maxW(1023px) {
@@ -65,8 +66,8 @@
 
       &_inner {
         position: absolute;
-        left: 50%;
-        top: 50%;
+        left: 51.5%;
+        top: 48%;
         transform: translate(-50%, -50%);
         text-align: center;
 
@@ -81,7 +82,7 @@
       }
 
       @include maxW(1023px) {
-        margin-top: 270px;
+        margin-top: 200px;
 
         &_inner {
           p {
@@ -107,7 +108,7 @@
 
       .txt {
         margin-bottom: 80px;
-        font-size: 1.8rem;
+        font-size: 1.9rem;
         font-weight: 500;
         letter-spacing: -0.72px;
         line-height: 3.3;
