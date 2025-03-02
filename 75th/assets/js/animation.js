@@ -4785,12 +4785,12 @@
       window.addEventListener("scroll", () => {
         if (
           window.scrollY >
-          document.querySelector("[data-line1]").getBoundingClientRect().top
+          document.querySelector("[data-line1-trigger]").getBoundingClientRect().top
         ) {
           setTimeout(() => {
             const e = super.play();
             return t === te && this.trigger("play", this.offset), e;
-          }, 1500);
+          }, 1000);
         }
       });
     }
@@ -7225,12 +7225,12 @@
       window.addEventListener("scroll", () => {
         if (
           window.scrollY >
-          document.querySelector("[data-line1]").getBoundingClientRect().top
+          document.querySelector("[data-line2-trigger]").getBoundingClientRect().top
         ) {
           setTimeout(() => {
             const e = super.play();
             return t === te && this.trigger("play", this.offset), e;
-          }, 5000);
+          }, 1000);
         }
       });
     }
