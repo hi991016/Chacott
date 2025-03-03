@@ -114,7 +114,6 @@ const scrollEvents = () => {
     },
     (context) => {
       let { isMobile } = context.conditions;
-      console.log("isMobile", isMobile);
 
       // scroll logo shrink
       ScrollTrigger.create({

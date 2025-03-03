@@ -4784,8 +4784,7 @@
       // trigger line 1
       window.addEventListener("scroll", () => {
         if (
-          window.scrollY >
-          document.querySelector("[data-line1-trigger]").getBoundingClientRect().top
+          document.querySelector("[data-line1-trigger]").getBoundingClientRect().top - window.innerHeight + 100 < 0
         ) {
           setTimeout(() => {
             const e = super.play();
@@ -7224,8 +7223,7 @@
       // trigger line 2
       window.addEventListener("scroll", () => {
         if (
-          window.scrollY >
-          document.querySelector("[data-line2-trigger]").getBoundingClientRect().top
+          document.querySelector("[data-line2-trigger]").getBoundingClientRect().top - window.innerHeight + 100 < 0
         ) {
           setTimeout(() => {
             const e = super.play();
