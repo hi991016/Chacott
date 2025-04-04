@@ -23,6 +23,8 @@ const init = () => {
   const ll = new LazyLoad({
     threshold: 0,
   });
+  // session storage loading
+  sessionStorage.setItem("opening-displayed", !0);
 };
 
 // ===== lenis =====
@@ -59,38 +61,47 @@ const initLoader = () => {
     },
   });
 
-  preloader
-    .to("[data-loading-logo]", {
+  if (sessionStorage.getItem("opening-displayed") === "true") {
+    document.querySelector("[data-loading]").remove();
+    document.querySelector("[data-logo-shrink]").classList.add("is-done")
+    lenis.start();
+    preloader.to("[data-logo-shrink], [data-header-logo], [data-scrolldown]", {
       opacity: 1,
-      duration: 1,
-      delay: 1,
-      ease: Power4.easeInOut,
-    })
-    .to("[data-loading-overlay]", {
-      top: 0,
-      duration: 1.8,
-      delay: 1,
-      ease: Power4.easeOut,
-    })
-    .to(
-      "[data-logo-shrink]",
-      {
-        opacity: 1,
-        duration: 0.5,
-        onComplete: () => {
-          gsap.to("[data-loading]", {
-            zIndex: "-100",
-          });
-        },
-      },
-      "-=0.7"
-    )
-    .to("[data-header-logo], [data-scrolldown]", {
-      opacity: 1,
-      duration: 1,
-      delay: 3.8,
-      ease: Power4.easeInOut,
     });
+  } else {
+    preloader
+      .to("[data-loading-logo]", {
+        opacity: 1,
+        duration: 1,
+        delay: 1,
+        ease: Power4.easeInOut,
+      })
+      .to("[data-loading-overlay]", {
+        top: 0,
+        duration: 1.8,
+        delay: 1,
+        ease: Power4.easeOut,
+      })
+      .to(
+        "[data-logo-shrink]",
+        {
+          opacity: 1,
+          duration: 0.5,
+          onComplete: () => {
+            gsap.to("[data-loading]", {
+              zIndex: "-100",
+            });
+          },
+        },
+        "-=0.7"
+      )
+      .to("[data-header-logo], [data-scrolldown]", {
+        opacity: 1,
+        duration: 1,
+        delay: 3.8,
+        ease: Power4.easeInOut,
+      });
+  }
 };
 
 // ===== app height =====
@@ -277,7 +288,7 @@ panels.forEach((panel, i) => {
 
 /* ------------------------------ details page ------------------------------ */
 if (document.getElementById("detailspage")) {
-  const detailsSwiper = new Swiper('.detail_gallery', {
+  const detailsSwiper = new Swiper(".detail_gallery", {
     breakpoints: {
       0: {
         slidesPerView: 1.235,
